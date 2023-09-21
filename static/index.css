@@ -1,0 +1,54 @@
+/* ページ全体のスタイル */
+body {
+    background-image: url("/static/combined.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* ヘッダースタイルの設定 */
+h1 {
+    color: #000000;
+    text-align: center;
+    padding-top: 150px;
+    font-size: 40px;
+}
+
+/* フォームスタイルの設定 */
+form {
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* 共通のボタンスタイル */
+.file-input-button {
+    background-color: #48c9f0;
+    color: #000000;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px; /* ボタン間の余白を追加 */
+}
+
+/* プレビューのスタイル */
+img {
+    max-width: 100%; /* 画像の幅が親要素に合わせるため */
+    max-height: 80vh; /* 画像の高さが画面の80%未満になるように制限（任意の高さを設定可能） */
+    display: block; /* インライン要素ではなく、ブロック要素として表示 */
+    margin: 0 auto; /* 水平方向に中央揃え */
+    /* 縁取り（ボーダー）のスタイルを追加 */
+    border: 10px solid rgb(242, 201, 52); /* 線の幅と色を指定 */
+    padding: 0px; /* プレビュー画像とボーダーの間の余白を指定 */
+}
+
+.prediction-container {
+    display: flex; /* Flexbox を使用して要素を横に並べます */
+    flex-wrap: wrap; /* 要素が横に並んだ際に折り返すようにします */
+}
+
+.prediction {
+    margin: 10px; /* 各要素の余白を設定します */
+    padding: 10px; /* 各要素の内側の余白を設定します */
+    border: 1px solid #ddd; /* 各要素を区切るボーダーを追加します */
+    width: 200px; /* 各要素の幅を指定します */
+}

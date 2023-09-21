@@ -1,0 +1,25 @@
+/* ページ全体のスタイル */
+body {
+    background-image: url("/static/combined.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* ヘッダースタイルの設定 */
+h1 {
+    color: #000000;
+    text-align: center;
+    padding-top: 100px;
+    font-size: 40px;
+}
+
+
+/* プレビューのスタイル */
+img {
+    max-width: 50%; /* 画像の幅が親要素に合わせるため */
+    max-height: 80vh; /* 画像の高さが画面の80%未満になるように制限（任意の高さを設定可能） */
+    display: block; /* インライン要素ではなく、ブロック要素として表示 */
+    margin: 0 auto; /* 水平方向に中央揃え */
+    border: 10px solid rgb(242, 201, 52); /* 線の幅と色を指定 */
+    padding: 0px; /* プレビュー画像とボーダーの間の余白を指定 */
+}

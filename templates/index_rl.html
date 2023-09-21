@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>幼児画の年齢推定</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}"> <!-- CSSファイルを読み込む -->
+</head>
+<body>
+    <!-- ログアウトボタンを表示 -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">ログアウト</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <h1>ようこそ 幼児画の年齢推定ページへ</h1>
+
+    <!-- ログインへのリンクを追加 -->
+    <a href="{{ url_for('login') }}">ログイン</a>
+
+    <!-- ユーザー登録へのリンクを追加 -->
+    <a href="{{ url_for('register') }}">ユーザー登録</a>
+
+    <form method="POST" action="/" enctype="multipart/form-data">
+        <input type="file" name="file" id='file-input' class="file-input-button"> <!-- ボタンに共通のクラスを追加 -->
+        <input type="submit" value="予測を開始" class="file-input-button"> <!-- ボタンに共通のクラスを追加 -->
+    </form>
+
+    <!-- 画像プレビュー用の要素 -->
+    <div id="image-preview-container" style="display: none;">
+        <img id="image-preview" src="" alt="画像プレビュー">
+    </div>
+
+    <script>
+        // ファイル選択要素を取得
+        const fileInput = document.getElementById("file-input");
+    
+        // 画像プレビュー要素を取得
+        const imagePreview = document.getElementById("image-preview");
+    
+        // 画像プレビュー用のコンテナ要素を取得
+        const imagePreviewContainer = document.getElementById("image-preview-container");
+    
+        // ファイルが選択されたときにプレビューを表示する処理
+        fileInput.addEventListener("change", function () {
+            // 選択したファイルを取得
+            const selectedFile = fileInput.files[0];
+    
+            // ファイルが存在する場合
+            if (selectedFile) {
+                // ファイルを読み込むためのFileReaderを作成
+                const reader = new FileReader();
+    
+                // ファイルの読み込みが完了したときの処理
+                reader.onload = function (e) {
+                    // 読み込んだデータを画像プレビューに表示
+                    imagePreview.src = e.target.result;
+    
+                    // 画像プレビュー用のコンテナを表示
+                    imagePreviewContainer.style.display = "block";
+    
+                    // 画像の幅を指定
+                    const select_w = 400; // 幅を調整したいサイズに設定
+                    const img = new Image();
+                    img.src = e.target.result;
+    
+                    // 画像が読み込まれたときの処理
+                    img.onload = function () {
+                        const aspectRatio = img.width / img.height;
+                        const newWidth = select_w;
+                        const newHeight = newWidth / aspectRatio;
+                        imagePreview.width = newWidth; // 幅を指定
+                        imagePreview.height = newHeight; // 高さを指定
+                    };
+                };
+    
+                // ファイルを読み込む
+                reader.readAsDataURL(selectedFile);
+            } else {
+                // ファイルが選択されていない場合は画像プレビューを非表示
+                imagePreviewContainer.style.display = "none";
+                imagePreview.src = "";
+            }
+        });
+    </script>
+
+    {% if uploaded_image %}
+    <h2>アップロードした画像:</h2>
+    <img src="{{ uploaded_image }}" alt="アップロードした画像">
+    <img src="{{ url_for('uploaded_file', filename=uploaded_image.split('/')[-1]) }}" alt="Uploaded Image">
+    {% endif %}
+
+    <h2>予測履歴</h2>
+    <div class="prediction-container">
+        {% for prediction in user_predictions %}
+        <div class="prediction">
+            {% if prediction.prediction_time %}
+                <p>予測日時: {{ prediction.prediction_time.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+            {% else %}
+                <p>予測日時: N/A</p>
+            {% endif %}
+            <p>予測結果: {{ prediction.predicted_age }}</p>
+            <p>確率: {{ prediction.confidence }}%</p>
+            <img src="{{ url_for('uploaded_file', filename=prediction.filename) }}" alt="プレビュー画像" width="{{ preview_size[0] }}" height="{{ preview_size[1] }}">
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
