@@ -9,9 +9,25 @@ body {
 h1 {
     color: #000000;
     text-align: center;
-    padding-top: 150px;
+    padding-top: 100px;
     font-size: 40px;
 }
+
+/* ログアウトボタンに対するスタイル */
+.logout-button {
+    background-color: #efafee;
+    color: #000000;
+    border-radius: 5px;
+    padding: 10px 20px;
+    border: 1px solid #000;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 0; /* 左端に配置 */
+    margin-right: auto; /* 右側の余白を自動調整 */
+    text-decoration: none; /* 下線を非表示にする */
+    display: inline-block; /* インラインブロック要素として表示 */
+}
+
 
 /* フォームスタイルの設定 */
 form {
@@ -21,10 +37,11 @@ form {
 
 /* 共通のボタンスタイル */
 .file-input-button {
-    background-color: #48c9f0;
+    background-color: #efafee;
     color: #000000;
+    border-radius: 5px;
     padding: 10px 20px;
-    border: none;
+    border: 1px solid #000;
     cursor: pointer;
     font-size: 16px;
     margin: 10px; /* ボタン間の余白を追加 */

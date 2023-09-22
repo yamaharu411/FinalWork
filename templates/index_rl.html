@@ -11,21 +11,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 {% if current_user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">ログアウト</a>
-                    </li>
+                    <a class="nav-link-button logout-button" href="/logout">ログアウト</a>
                 {% endif %}
             </ul>
         </div>
     </nav>
 
     <h1>ようこそ 幼児画の年齢推定ページへ</h1>
-
-    <!-- ログインへのリンクを追加 -->
-    <a href="{{ url_for('login') }}">ログイン</a>
-
-    <!-- ユーザー登録へのリンクを追加 -->
-    <a href="{{ url_for('register') }}">ユーザー登録</a>
 
     <form method="POST" action="/" enctype="multipart/form-data">
         <input type="file" name="file" id='file-input' class="file-input-button"> <!-- ボタンに共通のクラスを追加 -->
@@ -96,7 +88,7 @@
     <img src="{{ url_for('uploaded_file', filename=uploaded_image.split('/')[-1]) }}" alt="Uploaded Image">
     {% endif %}
 
-    <h2>予測履歴</h2>
+    <h2>{% if current_user.is_authenticated %}{{ current_user.username }}さんの{% else %}ゲスト{% endif %}予測履歴</h2>
     <div class="prediction-container">
         {% for prediction in user_predictions %}
         <div class="prediction">

@@ -13,10 +13,24 @@ h1 {
     font-size: 40px;
 }
 
+/* ログアウトボタンに対するスタイル */
+.logout-button {
+    background-color: #efafee;
+    color: #000000;
+    border-radius: 5px;
+    padding: 10px 20px;
+    border: 1px solid #000;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 0; /* 左端に配置 */
+    margin-right: auto; /* 右側の余白を自動調整 */
+    text-decoration: none; /* 下線を非表示にする */
+    display: inline-block; /* インラインブロック要素として表示 */
+}
 
 /* プレビューのスタイル */
 img {
-    max-width: 50%; /* 画像の幅が親要素に合わせるため */
+    max-width: 30%; /* 画像の幅が親要素に合わせるため */
     max-height: 80vh; /* 画像の高さが画面の80%未満になるように制限（任意の高さを設定可能） */
     display: block; /* インライン要素ではなく、ブロック要素として表示 */
     margin: 0 auto; /* 水平方向に中央揃え */

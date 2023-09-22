@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ユーザー登録</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}"> <!-- CSSファイルを読み込む -->
 </head>
 <body>
-    <h1>ユーザー登録</h1>
+    <h1>幼児画の年齢推定 ユーザー登録</h1>
     <form method="POST" action="/register">
         <label for="username">ユーザー名:</label>
         <input type="text" id="username" name="username" required><br><br>
@@ -18,3 +19,7 @@
     </form>
 </body>
 </html>
+
+
+
+
